@@ -1,24 +1,78 @@
+function getRandomHexColor() {
+    return `#${Math.floor(Math.random() * 16777215)
+      .toString(16)
+      .padStart(6, 0)}`;
+}
+ 
+const input = document.querySelector('input');
+const btnCreate = document.querySelector("[data-create]");
+const btnDestroy = document.querySelector("[data-destroy]");
+const boxes = document.querySelector("div#boxes");
+  
+btnCreate.addEventListener("click", () => {
+    if(input.value && input.value >= 1 && input.value <= 100){ 
+        createBoxes(input.value);
+    }
+    else {
+        alert('Вкажіть від 1 до 100')
+    }
+});
 
+btnDestroy.addEventListener("click", () => {
+    destroyBoxes();
+});
 
+function createBoxes(amount) {
+    destroyBoxes();
 
+    let width = 30;
+    let height = 30;
 
+    for (let i = 0; i < amount; i++) {
+        const color = getRandomHexColor();
 
-// Напиши скрипт, який змінює колір фону елемента <body> через інлайн-стиль по 
-// кліку на button.change-color і 
-// задає це значення кольору текстовим вмістом для span.color.
+        const el = document.createElement('div');
+        el.style.width = width + "px";
+        el.style.height = height + "px";
+        el.style.backgroundColor = color;
 
-// <div class="widget">
-//   <p>Background color: <span class="color">-</span></p>
-//   <button type="button" class="change-color">Change color</button>
+        boxes.append(el);        
+
+        width = width + 10;
+        height = height + 10;
+    }
+
+    input.value = null;
+};
+
+function destroyBoxes() {
+    boxes.innerHTML = "";
+}
+
+//   Напиши скрипт створення й очищення колекції елементів з наступним функціоналом.
+
+// Є input, у який користувач вводить бажану кількість елементів. Після натискання на кнопку Create має рендеритися (додаватися в DOM) 
+// колекція з відповідною кількістю елементів і очищатися значення в інпуті. При повторному натисканні на кнопку Create поверх старої 
+// колекції має рендеритись нова. Після натискання на кнопку Destroy колекція елементів має очищатися.
+
+// <div id="controls">
+//   <input type="number" min="1" max="100" step="1" />
+//   <button type="button" data-create>Create</button>
+//   <button type="button" data-destroy>Destroy</button>
 // </div>
+// <div id="boxes"></div>
 
-// Для генерування випадкового кольору використовуй функцію getRandomHexColor().
+// Після натискання користувачем на кнопку Create треба провалідувати значення в input, воно має бути в межах від 1 до 100 включно. 
+// Тільки якщо воно задоволяє умову, мають додаватися нові <div> елементи в DOM.
 
-// function getRandomHexColor() {
-//   return `#${Math.floor(Math.random() * 16777215)
-//     .toString(16)
-//     .padStart(6, 0)}`;
-// }
+// Для рендеру елементів на сторінці створи функцію createBoxes(amount), яка приймає один параметр — число, що зберігає кількість 
+// елементів для рендеру. Функція має створювати стільки <div> елементів, скільки вказано в параметрі amount і додавати їх у DOM 
+// дочірніми елементами для div#boxes.
 
-// Зверни увагу, що функція getRandomHexColor() повертає колір у hex-форматі, 
-// в той час як колір фону на <body> буде у форматі rgb. Це нормально й не потребує якихось правок.
+// Розміри першого <div> елемента мають бути 30px на 30px.
+// Кожен наступний елемент повинен бути ширшим і вищим від попереднього на 10px.
+// Усі елементи повинні мати випадковий колір фону. Використовуй готову функцію getRandomHexColor() для отримання випадкового кольору.
+
+
+// Для очищення колекції після натискання на кнопку Destroy створи функцію destroyBoxes(), яка очищає вміст div#boxes, у такий спосіб 
+// видаляючи всі створені елементи.

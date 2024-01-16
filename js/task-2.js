@@ -34,7 +34,7 @@ images.map ((image) => {
     const img = document.createElement('img');
     img.src = image.url;
     img.alt = image.alt;
-    img.className = "g_img";
+    img.className = 'g_img';
     li.append(img);
 });
 

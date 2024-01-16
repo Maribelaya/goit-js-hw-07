@@ -6,11 +6,24 @@ function getRandomHexColor() {
 
 document.querySelector(".change-color").addEventListener("click", event => {
     const color = getRandomHexColor();
+    document.body.style.backgroundColor = color;
+    document.querySelector(".color").textContent = color;
 
-    document.querySelector("body").setAttribute("style", "background-color: " + color);
-    document.querySelector("span.color").textContent = color;
+    //document.querySelector("body").setAttribute("style", "background-color: " + color);
+    //document.querySelector("span.color").textContent = color;
+
 });
 
+// const changeColorButton = document.querySelector(".change-color");
+// const widget = document.querySelector(".widget");
+// const colorSpan = document.querySelector(".color");
+
+// changeColorButton.addEventListener("click", () => {
+//   const randomColor = getRandomHexColor();
+//   document.body.style.backgroundColor = randomColor;
+//   widget.style.backgroundColor = randomColor;
+//   colorSpan.textContent = randomColor;
+// });
 
 
 
@@ -24,11 +37,7 @@ document.querySelector(".change-color").addEventListener("click", event => {
 
 // Для генерування випадкового кольору використовуй функцію getRandomHexColor().
 
-// function getRandomHexColor() {
-//   return `#${Math.floor(Math.random() * 16777215)
-//     .toString(16)
-//     .padStart(6, 0)}`;
-// }
+
 
 // Зверни увагу, що функція getRandomHexColor() повертає колір у hex-форматі, в той час як 
 // колір фону на <body> буде у форматі rgb. Це нормально й не потребує якихось правок.
