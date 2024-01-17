@@ -26,17 +26,14 @@ const images = [
   ];
 
 const galleryElem = document.querySelector('.gallery');
-
-images.map ((image) => {
-    const li = document.createElement('li');
-    galleryElem.append(li);
-
-    const img = document.createElement('img');
-    img.src = image.url;
-    img.alt = image.alt;
-    img.className = 'g_img';
-    li.append(img);
-});
+const markup =  images.map ((image) => {
+  return ` 
+  <li>
+    <img src="${image.url}" alt="${image.alt}" class="g_img">
+  </li>`;
+})
+ .join('');  
+ galleryElem.innerHTML = markup;
 
 
 
